@@ -1,4 +1,4 @@
-const { Decimal128 } = require("mongodb");
+const mongodb = require("mongodb");
 const mongoose = require("mongoose");
 const StudentSchema = new mongoose.Schema({
   s_name: {
