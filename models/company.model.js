@@ -21,6 +21,10 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  passout_batch: {
+    type: String,
+    required: true,
+  },
   package: {
     type: Number,
     required: true,
@@ -39,11 +43,11 @@ const companySchema = new mongoose.Schema({
     default: "NA",
   },
   min_10_percent: {
-    type: String,
+    type: Number,
     default: "NA",
   },
   min_12_percent: {
-    type: String,
+    type: Number,
     default: "NA",
   },
   branch: {
@@ -52,8 +56,45 @@ const companySchema = new mongoose.Schema({
   },
   companies_allowed: {
     type: Array,
+  },
+  deadline_date: {
+    type: Date,
     required: true,
   },
+  // Selection Process
+  selection_process: {
+    type: Object,
+  },
+  waitlist: {
+    type: String,
+  },
+  final_offer: {
+    type: String,
+  },
+
+  candidates: [
+    {
+      college_id: {
+        type: String,
+        required: true,
+      },
+      candidate_status: {
+        type: String,
+        default: "Applied",
+        enum: [
+          "Applied",
+          "Appeared for Test",
+          "Absent",
+          "Shortlisted",
+          "Selected",
+        ],
+      },
+      timestamp: {
+        type: Date,
+        required: true,
+      },
+    },
+  ],
   //this is added by mongodb by default no need to explicityly add this
   timestamp: {
     type: Date,

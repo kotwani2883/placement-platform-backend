@@ -71,13 +71,11 @@ exports.forgotPassword = async (req, res) => {
           { college_id: req.body.college_id.toUpperCase() },
           { temporarytoken: user.temporarytoken }
         );
-        res
-          .status(200)
-          .json({
-            success: true,
-            message:
-              "Link to reset your password has been sent to your registered email.",
-          });
+        res.status(200).json({
+          success: true,
+          message:
+            "Link to reset your password has been sent to your registered email.",
+        });
         //TODO
         // const sendLink = await Mailer.sendDM(user, 'forgotPassword');
       }
