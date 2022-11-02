@@ -32,6 +32,7 @@ DB();
 // routes
 app.use("/api/auth/", require("./routes/auth.router"));
 app.use("/api/user", require("./routes/user.router"));
+app.use("/api/company", require("./routes/company.router"));
 
 // listening
 app.listen(port, () => console.log(`Listning on localhost: ${port}`));

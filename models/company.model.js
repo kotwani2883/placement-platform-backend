@@ -21,7 +21,7 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  job_ctc: {
+  package: {
     type: Number,
     required: true,
   },

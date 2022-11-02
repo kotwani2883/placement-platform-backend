@@ -51,3 +51,40 @@ exports.login = async (req, res) => {
     }
   }
 };
+
+exports.forgotPassword = async (req, res) => {
+  const _b = req.body;
+  if (!_b.college_id)
+    res.status(200).json({ success: false, message: "Missing college ID" });
+  else
+    try {
+      const user = await User.findOne({
+        college_id: req.body.college_id.toUpperCase(),
+      }).select("college_id college_email temporarytoken student_name");
+      if (!user) {
+        res
+          .status(200)
+          .json({ success: false, message: "College ID not found." });
+      } else {
+        user.temporarytoken = jwtService.encode(user);
+        let updateToken = await User.updateOne(
+          { college_id: req.body.college_id.toUpperCase() },
+          { temporarytoken: user.temporarytoken }
+        );
+        res
+          .status(200)
+          .json({
+            success: true,
+            message:
+              "Link to reset your password has been sent to your registered email.",
+          });
+        //TODO
+        // const sendLink = await Mailer.sendDM(user, 'forgotPassword');
+      }
+    } catch (err) {
+      console.error(err);
+      res
+        .status(200)
+        .json({ success: false, message: "Something went wrong!" });
+    }
+};
