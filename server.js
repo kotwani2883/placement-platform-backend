@@ -5,11 +5,8 @@ const cookie = require("cookie-parser");
 
 //DB config
 const DB = require("./database/connectDB");
-
+let morgan = require("morgan"); // middleware to log http requests
 //requiring the routes
-
-const userRoute = require("./routes/user");
-const protectedRoute = require("./routes/protected");
 
 //App Config
 const app = express();
@@ -28,13 +25,13 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cookie());
-
+app.use(morgan("dev"));
 //db connection
 DB();
 
-// api calls
-app.use(userRoute);
-app.use(protectedRoute);
+// routes
+app.use("/api/auth/", require("./routes/auth.router"));
+app.use("/api/user", require("./routes/user.router"));
 
 // listening
 app.listen(port, () => console.log(`Listning on localhost: ${port}`));
