@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Cors = require("cors");
+const cors = require("cors");
 const cookie = require("cookie-parser");
 
 //DB config
@@ -17,7 +17,12 @@ require("dotenv").config();
 
 //Middlewares
 app.use(express.json());
-app.use(Cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(
   bodyParser.urlencoded({
     extended: false,

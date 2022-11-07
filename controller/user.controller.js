@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const jwtService = require("../services/jwt.services");
 //Register Working Successfully
 exports.register = async (req, res) => {
+  console.log(req.body);
   try {
     console.log("register", req.body);
     const user = new User(req.body);
@@ -35,10 +36,11 @@ exports.login = async (req, res) => {
           success: true,
           message: "User authenticated Successfully",
           token: token,
+          user: user,
         });
         console.log("Yayy User Authenticated successfully");
       } else {
-        res.status(500).json({
+        res.status(400).json({
           success: false,
           message: "Incorrect password. Please try again.",
         });
@@ -46,7 +48,7 @@ exports.login = async (req, res) => {
     } catch (err) {
       console.error(err);
       res
-        .status(200)
+        .status(400)
         .json({ success: false, message: "Something went wrong!" });
     }
   }

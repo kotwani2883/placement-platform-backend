@@ -1,7 +1,7 @@
 let User = require("../models/user.model");
 
 // Only allows Admin & Faculty Coordinators
-
+//Authentication Function for protected routing
 function ensureCoordinator(req, res, next) {
   if (!req.decoded.college_id) {
     res.status(200).json({ success: false, message: "Please login." });
@@ -28,7 +28,7 @@ function ensureCoordinator(req, res, next) {
       });
   }
 }
-
+//Authentication Function for protected routing after login for students
 function ensureStudent(req, res, next) {
   if (!req.decoded.college_id) {
     res.status(200).json({ success: false, message: "Please login." });

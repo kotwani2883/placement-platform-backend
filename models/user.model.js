@@ -113,6 +113,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  /*temporary token is generated for the forgot password feature */
   temporarytoken: {
     type: String,
   },
