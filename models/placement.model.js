@@ -62,4 +62,4 @@ placementsSchema.plugin(titlize, {
   paths: ["company_name", "job_profile"], // Array of paths
 });
 
-module.exports = mongoose.model("Placements", placementsSchema);
+module.exports = mongoose.model("Placement", placementsSchema);

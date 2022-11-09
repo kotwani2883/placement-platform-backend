@@ -37,6 +37,9 @@ DB();
 // routes
 app.use("/api/auth/", require("./routes/auth.router"));
 app.use("/api/user", require("./routes/user.router"));
+app.use("/api/announcement", require("./routes/announcement.router"));
+app.use("/api/apply", require("./routes/apply.router"));
+app.use("/api/placements", require("./routes/placements.router"));
 app.use("/api/company", require("./routes/company.router"));
 app.use("/api/apply", require("./routes/apply.router"));
 

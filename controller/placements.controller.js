@@ -1,4 +1,4 @@
-let Placements = require("../models/placements.model");
+let Placements = require("../models/placement.model");
 const mongoose = require("mongoose");
 
 exports.add = (req, res) => {
@@ -30,22 +30,18 @@ exports.add = (req, res) => {
     )
       .then((data) => {
         console.log(data);
-        res
-          .status(200)
-          .json({
-            success: true,
-            message: "Placements data successfully added.",
-          });
+        res.status(200).json({
+          success: true,
+          message: "Placements data successfully added.",
+        });
       })
       .catch((err) => {
         console.log(err);
-        res
-          .status(200)
-          .json({
-            success: false,
-            message: "Something went wrong!",
-            error: err,
-          });
+        res.status(200).json({
+          success: false,
+          message: "Something went wrong!",
+          error: err,
+        });
       });
   }
 };
