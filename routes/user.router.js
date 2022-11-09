@@ -13,8 +13,8 @@ router.post(
 );
 router.get(
   "/profile",
-  jwtMiddleware.verify,
-  authMiddleware.ensureLoggedIn,
+  //   jwtMiddleware.verify,
+  //   authMiddleware.ensureLoggedIn,
   userController.profile
 );
 
