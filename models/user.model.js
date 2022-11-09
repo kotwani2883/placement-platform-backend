@@ -122,6 +122,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "student",
   },
+  tokens: {
+    token: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 userSchema.pre("save", async function (req, res, next) {

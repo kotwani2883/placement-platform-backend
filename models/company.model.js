@@ -17,15 +17,11 @@ const companySchema = new mongoose.Schema({
     default: " ",
   },
   // Job Profile
-  job_profile: {
+  job_role: {
     type: String,
     required: true,
   },
-  passout_batch: {
-    type: String,
-    required: true,
-  },
-  package: {
+  job_ctc: {
     type: Number,
     required: true,
   },
@@ -33,11 +29,23 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  job_description: {
-    type: String,
+  job_stipend: {
+    type: Number,
     default: " ",
   },
+  job_about: {
+    type: String,
+    default: "",
+  },
   // student eligibility
+  deadline_date: {
+    type: Date,
+    required: true,
+  },
+  batch: {
+    type: Number,
+    required: true,
+  },
   min_cgpa: {
     type: String, // todo convert float
     default: "NA",
@@ -57,44 +65,17 @@ const companySchema = new mongoose.Schema({
   companies_allowed: {
     type: Array,
   },
-  deadline_date: {
-    type: Date,
-    required: true,
-  },
-  // Selection Process
-  selection_process: {
-    type: Object,
-  },
-  waitlist: {
-    type: String,
-  },
-  final_offer: {
-    type: String,
-  },
 
-  candidates: [
-    {
-      college_id: {
-        type: String,
-        required: true,
-      },
-      candidate_status: {
-        type: String,
-        default: "Applied",
-        enum: [
-          "Applied",
-          "Appeared for Test",
-          "Absent",
-          "Shortlisted",
-          "Selected",
-        ],
-      },
-      timestamp: {
-        type: Date,
-        required: true,
-      },
-    },
-  ],
+  // Selection Process
+  // selection_process: {
+  //   type: Object,
+  // },
+  // waitlist: {
+  //   type: String,
+  // },
+  // final_offer: {
+  //   type: String,
+  // },
   //this is added by mongodb by default no need to explicityly add this
   timestamp: {
     type: Date,
