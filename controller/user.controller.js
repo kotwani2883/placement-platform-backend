@@ -105,7 +105,7 @@ exports.me = async (req, res) => {
 };
 
 exports.profile = async (req, res) => {
-  let profile = await User.findOne({ college_id: req.body.college_id })
+  let profile = await User.findOne({ college_id: req.query.college_id })
     .select("-temporarytoken -password ")
     .lean()
     .then((profile) => {
