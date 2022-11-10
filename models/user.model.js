@@ -35,28 +35,18 @@ var passwordValidator = [
 ];
 
 const userSchema = new mongoose.Schema({
-  student_name: {
+  first_name: {
     type: String,
     required: true,
   },
-  college_id: {
+  middle_name: {
+    type: String,
+  },
+  last_name: {
     type: String,
     required: true,
   },
-  gender: {
-    type: String,
-    default: "M",
-  },
-  dob: {
-    type: Date,
-    required: true,
-  },
-  stream: {
-    type: String,
-    required: true,
-  },
-
-  college_email: {
+  personal_email: {
     type: String,
     required: true,
   },
@@ -64,25 +54,8 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  passout_batch: {
-    type: Number,
-    required: true,
-  },
-  CGPA: {
-    type: Number,
-    required: true,
-  },
-  senior_marks: {
-    type: Number,
-    required: true,
-  },
-  matric_marks: {
-    type: Number,
-    required: true,
-  },
-  ActiveBacklog: {
-    type: Number,
-    required: true,
+  country: {
+    type: String,
   },
   address: {
     type: String,
@@ -90,14 +63,96 @@ const userSchema = new mongoose.Schema({
   city: {
     type: String,
   },
-  post_code: {
-    type: String,
-  },
   state: {
     type: String,
   },
-  country: {
+  post_code: {
     type: String,
+  },
+  gender: {
+    type: String,
+    default: "M",
+  },
+  college_name: {
+    type: String,
+    required: true,
+  },
+  college_email: {
+    type: String,
+    required: true,
+  },
+  college_id: {
+    type: String,
+    required: true,
+  },
+  college_course: {
+    type: String,
+    required: true,
+  },
+  stream: {
+    type: String,
+    required: true,
+  },
+  sem1_cgpa: {
+    type: Number,
+    required: true,
+  },
+  sem2_cgpa: {
+    type: Number,
+    required: true,
+  },
+  sem3_cgpa: {
+    type: Number,
+    required: true,
+  },
+  sem4_cgpa: {
+    type: Number,
+    required: true,
+  },
+  sem5_cgpa: {
+    type: Number,
+    required: true,
+  },
+  sem6_cgpa: {
+    type: Number,
+  },
+  sem7_cgpa: {
+    type: Number,
+  },
+  sem8_cgpa: {
+    type: Number,
+  },
+  aggregate_cgpa: {
+    type: Number,
+    required: true,
+  },
+  ActiveBacklog: {
+    type: Number,
+    required: true,
+  },
+  senior_marks: {
+    type: Number,
+  },
+  senior_yop: {
+    type: Number,
+  },
+  matric_marks: {
+    type: Number,
+    required: true,
+  },
+  matric_yop: {
+    type: Number,
+    required: true,
+  },
+  diploma_marks: {
+    type: Number,
+  },
+  diploma_yop: {
+    type: Number,
+  },
+  gap_yrs: {
+    type: Number,
+    required: true,
   },
   resume_url: {
     type: String,
@@ -121,12 +176,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: "student",
-  },
-  tokens: {
-    token: {
-      type: String,
-      required: true,
-    },
   },
 });
 

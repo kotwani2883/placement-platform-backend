@@ -8,7 +8,7 @@ exports.register = async (req, res) => {
     const user = new User(req.body);
     await user.save();
     console.log("user Saved Successfully");
-    res.status(200).send({ status: true });
+    res.status(200).send({ status: true, user: user });
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: false, message: "server error" });
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
     try {
       const user = await User.findOne({
         college_id: req.body.college_id.toUpperCase(),
-      }).select("college_id student_name password permission");
+      }).select("college_id first_name last_name password permission");
       console.log(user);
       let validPassword = user.comparePassword(_b.password);
       console.log(_b.password);
@@ -63,7 +63,7 @@ exports.forgotPassword = async (req, res) => {
     try {
       const user = await User.findOne({
         college_id: req.body.college_id.toUpperCase(),
-      }).select("college_id college_email temporarytoken student_name");
+      }).select("college_id college_email temporarytoken first_name last_name");
       if (!user) {
         res
           .status(200)
@@ -93,7 +93,7 @@ exports.forgotPassword = async (req, res) => {
 exports.me = async (req, res) => {
   const user = await User.findOne({ college_id: req.decoded.college_id })
     .select(
-      "college_id student_name gender department red_flags passout_batch permission"
+      "college_id first_name last_ gender department red_flags passout_batch permission"
     )
     .lean();
 

@@ -2,11 +2,11 @@ let mongoose = require("mongoose");
 let titlize = require("mongoose-title-case");
 
 let announcementSchema = new mongoose.Schema({
-  category: {
+  title: {
     type: String,
     required: true,
   },
-  announcement: {
+  announcement_messa: {
     type: String,
     required: true,
   },

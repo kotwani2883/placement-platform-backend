@@ -38,6 +38,7 @@ const companySchema = new mongoose.Schema({
     default: "",
   },
   // student eligibility
+  // registration deadline
   deadline_date: {
     type: Date,
     required: true,
@@ -65,17 +66,39 @@ const companySchema = new mongoose.Schema({
   companies_allowed: {
     type: Array,
   },
-
+  candidates: [
+    {
+      college_id: {
+        type: String,
+        required: true,
+      },
+      candidate_status: {
+        type: String,
+        default: "Applied",
+        enum: [
+          "Applied",
+          "Appeared for Test",
+          "Absent",
+          "Shortlisted",
+          "Selected",
+        ],
+      },
+      timestamp: {
+        type: Date,
+        required: true,
+      },
+    },
+  ],
   // Selection Process
-  // selection_process: {
-  //   type: Object,
-  // },
-  // waitlist: {
-  //   type: String,
-  // },
-  // final_offer: {
-  //   type: String,
-  // },
+  selection_process: {
+    type: Object,
+  },
+  waitlist: {
+    type: String,
+  },
+  final_offer: {
+    type: String,
+  },
   //this is added by mongodb by default no need to explicityly add this
   timestamp: {
     type: Date,

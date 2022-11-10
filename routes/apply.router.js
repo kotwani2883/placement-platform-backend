@@ -5,8 +5,8 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post(
   "/oneClickApply",
-  jwtMiddleware.verify,
-  authMiddleware.ensureStudentWithCompleteProfile,
+  //   jwtMiddleware.verify,
+  //   authMiddleware.ensureStudentWithCompleteProfile,
   applyController.oneClickApply
 );
 

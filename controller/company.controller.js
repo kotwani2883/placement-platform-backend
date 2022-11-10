@@ -41,3 +41,34 @@ exports.add = (req, res) => {
       });
     });
 };
+
+exports.getOne = (req, res) => {
+  const _b = req.params;
+
+  Company.findOne({ _id: _b.company_id })
+    .select("-candidates")
+    .lean()
+    .then((companyDetail) => {
+      res.status(200).json({ success: true, companyDetail: companyDetail });
+    })
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(200)
+        .json({ success: false, message: "Something went wrong!" });
+    });
+};
+exports.getAllCompanies = async (req, res) => {
+  const company_name = await Company.find()
+    .select("company_name")
+    .lean()
+    .then((company_name) => {
+      res.status(200).json({ success: true, company_name: company_name });
+    })
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(500)
+        .json({ success: false, message: "Something went wrong!" });
+    });
+};

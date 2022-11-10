@@ -7,7 +7,7 @@ exports.add = (req, res) => {
   Announcement.create({
     category: _b.category,
     passout_batch: _b.passout_batch,
-    author: req.decoded.student_name,
+    author: req.decoded.first_name,
     announcement: _b.announcement,
     timestamp: new Date(),
   })
