@@ -63,18 +63,20 @@ exports.validate = (req, res) => {
     });
 };
 
-exports.getOne = (req, res) => {
-  console.log(req.query.company_name);
-  Company.findOne({ company_name: req.query.company_name })
-    .select("-candidates")
+exports.getOne = async (req, res) => {
+  const details = await Company.find({
+    company_name: req.query.company_name,
+  })
+    .select("-batch")
     .lean()
-    .then((companyDetail) => {
-      res.status(200).json({ success: true, companyDetail: companyDetail });
+    .then((details) => {
+      console.log(details);
+      res.status(200).json({ success: true, details: details });
     })
     .catch((err) => {
       console.error(err);
       res
-        .status(200)
+        .status(500)
         .json({ success: false, message: "Something went wrong!" });
     });
 };

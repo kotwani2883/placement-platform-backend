@@ -90,15 +90,11 @@ exports.forgotPassword = async (req, res) => {
 };
 
 exports.me = async (req, res) => {
-  const user = await User.findOne({ college_id: req.query.college_id })
-    .select("college_id first_name last_ gender department  permission")
-    .lean();
-
-  if (!user) {
-    res.status(500).json({ success: false, message: "User not found." });
-  } else {
-    res.send(user);
-  }
+  const user = await User.find({ college_id: req.query.college_id })
+    .select("companies_allowed")
+    .then((user) => {
+      res.status(200).json({ success: true, user: user });
+    });
 };
 
 exports.profile = async (req, res) => {
