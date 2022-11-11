@@ -22,5 +22,5 @@ router.get(
   companyController.getOne
 );
 router.get("/getAllCompanies", companyController.getAllCompanies);
-
+router.post("/validate", companyController.validate);
 module.exports = router;

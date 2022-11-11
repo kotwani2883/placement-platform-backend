@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
       .lean();
 
     const companies = await Company.find({
-      passout_batch: user.passout_batch,
+      companies_allowed: { $in: user.placed_in },
     })
       .select("company_name job_profile package ")
       .lean();
@@ -21,6 +21,8 @@ exports.getAll = async (req, res) => {
   }
 };
 
+//student is params
+
 exports.add = (req, res) => {
   const _b = req.body;
   Company.create(_b)
@@ -30,6 +32,27 @@ exports.add = (req, res) => {
         .json({ success: true, message: "Successfully new company added." });
       console.log(_b);
     })
+    .catch((err) => {
+      console.error(err);
+      res.status(200).json({
+        success: false,
+        message:
+          "Something went wrong! Did you miss Company Name, Passout Batch, Job Profile or Deadline date?",
+      });
+    });
+};
+exports.validate = (req, res) => {
+  User.updateMany(
+    { aggregate_cgpa: { $gt: req.query.min_cgpa } },
+    { $push: { companies_allowed: req.query.company_name } }
+  )
+    .then(async (data) => {
+      res.status(200).json({
+        success: true,
+        message: "Successfully new company added to users",
+      });
+    })
+
     .catch((err) => {
       console.error(err);
       res.status(200).json({
