@@ -31,11 +31,10 @@ exports.login = async (req, res) => {
       let validPassword = user.comparePassword(_b.password);
       console.log(_b.password);
       if (validPassword) {
-        let token = jwtService.encode(user);
         res.status(200).json({
           success: true,
           message: "User authenticated Successfully",
-          token: token,
+
           user: user,
         });
         console.log(user);

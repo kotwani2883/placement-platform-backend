@@ -6,21 +6,23 @@ let announcementSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  announcement_messa: {
+  announcement_message: {
     type: String,
+  },
+  instruction: {
+    type: String,
+    // required: true,
+  },
+  deadline: {
+    type: Date,
     required: true,
   },
-  passout_batch: {
-    type: String,
-    required: true,
-  },
-  author: {
-    type: String,
+  recipent: {
+    type: Array,
     required: true,
   },
   timestamp: {
     type: Date,
-    required: true,
   },
 });
 

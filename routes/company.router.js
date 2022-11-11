@@ -16,7 +16,7 @@ router.post(
   companyController.add
 );
 router.get(
-  "/getOne/:company_id",
+  "/getOne",
   //   jwtMiddleware.verify,
   //   authMiddleware.ensureLoggedIn,
   companyController.getOne

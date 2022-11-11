@@ -3,10 +3,10 @@ const Company = require("../models/company.model");
 const mongoose = require("mongoose");
 
 exports.getAll = async (req, res) => {
-  const _b = req.body;
+  const _b = req.query;
 
   try {
-    const user = await User.findOne({ college_id: req.decoded.college_id })
+    const user = await User.findOne({ college_id: req.query.college_id })
       .select("passout_batch")
       .lean();
 
@@ -43,9 +43,8 @@ exports.add = (req, res) => {
 };
 
 exports.getOne = (req, res) => {
-  const _b = req.params;
-
-  Company.findOne({ _id: _b.company_id })
+  console.log(req.query.company_name);
+  Company.findOne({ company_name: req.query.company_name })
     .select("-candidates")
     .lean()
     .then((companyDetail) => {
@@ -63,6 +62,7 @@ exports.getAllCompanies = async (req, res) => {
     .select("company_name")
     .lean()
     .then((company_name) => {
+      console.log(typeof company_name);
       res.status(200).json({ success: true, company_name: company_name });
     })
     .catch((err) => {

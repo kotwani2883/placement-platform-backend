@@ -5,15 +5,15 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post(
   "/add",
-  jwtMiddleware.verify,
-  authMiddleware.ensureCoordinator,
+  //   jwtMiddleware.verify,
+  //   authMiddleware.ensureCoordinator,
   announcementController.add
 );
 
 router.get(
   "/getAll",
-  jwtMiddleware.verify,
-  authMiddleware.ensureLoggedIn,
+  //   jwtMiddleware.verify,
+  //   authMiddleware.ensureLoggedIn,
   announcementController.getAll
 );
 

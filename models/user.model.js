@@ -177,6 +177,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "student",
   },
+  placed_in: {
+    type: Array,
+    required: false,
+  },
 });
 
 userSchema.pre("save", async function (req, res, next) {
