@@ -90,7 +90,7 @@ exports.forgotPassword = async (req, res) => {
 };
 
 exports.me = async (req, res) => {
-  const user = await User.findOne({ college_id: req.decoded.college_id })
+  const user = await User.findOne({ college_id: req.query.college_id })
     .select(
       "college_id first_name last_ gender department red_flags passout_batch permission"
     )

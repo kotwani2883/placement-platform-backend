@@ -3,8 +3,6 @@ const Company = require("../models/company.model");
 const mongoose = require("mongoose");
 
 exports.getAll = async (req, res) => {
-  const _b = req.query;
-
   try {
     const user = await User.findOne({ college_id: req.query.college_id })
       .select("passout_batch")

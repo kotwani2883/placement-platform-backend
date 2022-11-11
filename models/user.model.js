@@ -181,6 +181,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
+  companies_allowed: {
+    type: Array,
+    required: false,
+  },
 });
 
 userSchema.pre("save", async function (req, res, next) {

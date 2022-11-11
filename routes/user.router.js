@@ -7,8 +7,8 @@ router.post("/login", userController.login);
 router.post("/forgotPassword", userController.forgotPassword);
 router.post(
   "/me",
-  jwtMiddleware.verify,
-  authMiddleware.ensureLoggedIn,
+  //   jwtMiddleware.verify,
+  //   authMiddleware.ensureLoggedIn,
   userController.me
 );
 router.get(
