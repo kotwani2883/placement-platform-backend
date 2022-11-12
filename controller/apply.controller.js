@@ -2,16 +2,15 @@ const User = require("../models/user.model");
 const Company = require("../models/company.model");
 
 exports.oneClickApply = async (req, res) => {
-  const _b = req.query;
-
   try {
-    const company = await Company.find({
-      company_name: _b.company_name,
+    const company = await Company.findOne({
+      company_name: req.body.company_name,
     }).select("candidates");
 
+    console.log(company);
     // todo = Validations
     company.candidates.push({
-      college_id: req.query.college_id,
+      college_id: req.body.college_id,
       timestamp: new Date(),
     });
 

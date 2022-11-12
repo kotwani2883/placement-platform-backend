@@ -70,7 +70,6 @@ const companySchema = new mongoose.Schema({
     {
       college_id: {
         type: String,
-        required: true,
       },
       // college_email: {
       //   type: String,
@@ -92,20 +91,10 @@ const companySchema = new mongoose.Schema({
       //   type: Number,
       //   required: true,
       // },
-      candidate_status: {
-        type: String,
-        default: "Applied",
-        enum: [
-          "Applied",
-          "Appeared for Test",
-          "Absent",
-          "Shortlisted",
-          "Selected",
-        ],
-      },
+
+      // },
       timestamp: {
         type: Date,
-        required: true,
       },
     },
   ],
