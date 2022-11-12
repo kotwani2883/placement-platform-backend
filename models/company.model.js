@@ -48,7 +48,7 @@ const companySchema = new mongoose.Schema({
     required: true,
   },
   min_cgpa: {
-    type: String, // todo convert float
+    type: Number, // todo convert float
     default: "NA",
   },
   min_10_percent: {
@@ -72,6 +72,26 @@ const companySchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      // college_email: {
+      //   type: String,
+      //   required: true,
+      // },
+      // gender: {
+      //   type: String,
+      //   required: true,
+      // },
+      // college_course: {
+      //   type: String,
+      //   required: true,
+      // },
+      // stream: {
+      //   type: String,
+      //   required: true,
+      // },
+      // aggregate_cgpa: {
+      //   type: Number,
+      //   required: true,
+      // },
       candidate_status: {
         type: String,
         default: "Applied",

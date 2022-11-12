@@ -5,7 +5,7 @@ exports.oneClickApply = async (req, res) => {
   const _b = req.query;
 
   try {
-    const company = await Company.findOne({
+    const company = await Company.find({
       company_name: _b.company_name,
     }).select("candidates");
 

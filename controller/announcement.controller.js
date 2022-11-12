@@ -28,7 +28,7 @@ exports.add = (req, res) => {
 
 exports.getAll = async (req, res) => {
   console.log(req.query.college_id);
-  const user = await User.findOne({
+  const user = await User.find({
     college_id: req.query.college_id,
   }).select("placed_in");
   console.log(user.placed_in);
