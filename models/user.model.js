@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  dob: {
+    type: Date,
+    required: true,
+  },
   country: {
     type: String,
   },

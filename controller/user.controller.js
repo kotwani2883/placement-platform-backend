@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const jwtService = require("../services/jwt.services");
+const Company = require("../models/company.model");
 //Register Working Successfully
 exports.register = async (req, res) => {
   console.log(req.body);
@@ -93,6 +94,7 @@ exports.me = async (req, res) => {
   const user = await User.find({ college_id: req.query.college_id })
     .select("companies_allowed")
     .then((user) => {
+      console.log(user);
       res.status(200).json({ success: true, user: user });
     });
 };

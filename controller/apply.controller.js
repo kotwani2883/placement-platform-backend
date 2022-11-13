@@ -6,9 +6,7 @@ exports.oneClickApply = async (req, res) => {
     const company = await Company.findOne({
       company_name: req.body.company_name,
     }).select("candidates");
-
     console.log(company);
-    // todo = Validations
     company.candidates.push({
       college_id: req.body.college_id,
       timestamp: new Date(),
@@ -16,6 +14,9 @@ exports.oneClickApply = async (req, res) => {
 
     const data = await company.save();
 
+    // const details = await User.findOne({
+    //   company_name: req.body.college_id,
+    // }).select("first_name last_name gender stream aggregate_cgpa");
     res
       .status(200)
       .json({ success: true, message: "Successfully applied.", data: data });

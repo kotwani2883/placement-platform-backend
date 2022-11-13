@@ -43,8 +43,8 @@ exports.add = (req, res) => {
 };
 exports.validate = (req, res) => {
   User.updateMany(
-    { aggregate_cgpa: { $gt: req.query.min_cgpa } },
-    { $push: { companies_allowed: req.query.company_name } }
+    { aggregate_cgpa: { $gt: req.body.min_cgpa } },
+    { $push: { companies_allowed: req.body.company_name } }
   )
     .then(async (data) => {
       res.status(200).json({
