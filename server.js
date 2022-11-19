@@ -17,12 +17,19 @@ require("dotenv").config();
 
 //Middlewares
 app.use(express.json());
+// app.use(
+//   cors({
+//     origin: "https://satyampgt4.github.io/placement-plateform-frontend/",
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: "https://satyampgt4.github.io/placement-plateform-frontend/",
+    origin: "http://localhost:3000/",
     credentials: true,
   })
 );
+
 app.use(
   bodyParser.urlencoded({
     extended: false,
