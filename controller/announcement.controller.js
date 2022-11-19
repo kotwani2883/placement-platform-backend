@@ -15,7 +15,7 @@ exports.add = (req, res) => {
     .then((data) => {
       res.status(200).json({
         success: true,
-        message: "Announcement successfully updated.",
+        message: "Announcement successfully Added.",
         data: data,
       });
     })

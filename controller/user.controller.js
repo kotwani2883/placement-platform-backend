@@ -157,7 +157,7 @@ exports.PlacedDetails = async (req, res) => {
   //2)company Name
 
   try {
-    let size = req.body.student_array.length;
+    let size = req.body.selected.length;
     for (let i = 0; i < size; i++) {
       // user.placed_in.push(req.body.company_name);
       // User.updateOne(
@@ -165,7 +165,7 @@ exports.PlacedDetails = async (req, res) => {
       //   user.placed_in.push(req.body.company_name)
       // );
       const user = await User.findOne({
-        college_id: req.body.student_array[i],
+        college_id: req.body.selected[i],
       }).select("placed_in");
 
       user.placed_in.push(req.body.company_name);
