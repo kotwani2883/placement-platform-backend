@@ -3,7 +3,7 @@ const companyController = require("../controller/company.controller");
 const jwtMiddleware = require("../middlewares/jwt.middleware");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post(
+router.get(
   "/getAll",
   //   jwtMiddleware.verify,
   //   authMiddleware.ensureLoggedIn,
@@ -21,6 +21,7 @@ router.get(
   //   authMiddleware.ensureLoggedIn,
   companyController.getOne
 );
+
 router.get("/getAllCompanies", companyController.getAllCompanies);
 router.post("/validate", companyController.validate);
 module.exports = router;

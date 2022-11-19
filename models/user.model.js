@@ -183,11 +183,9 @@ const userSchema = new mongoose.Schema({
   },
   placed_in: {
     type: Array,
-    required: false,
   },
   companies_allowed: {
     type: Array,
-    required: false,
   },
 });
 

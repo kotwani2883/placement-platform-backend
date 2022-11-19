@@ -9,6 +9,7 @@ exports.register = async (req, res) => {
     const user = new User(req.body);
     await user.save();
     console.log("user Saved Successfully");
+    // const new=User.find
     res.status(200).send({ status: true, user: user });
   } catch (error) {
     console.log(error);
@@ -148,5 +149,37 @@ exports.permission = async (req, res) => {
     res.status(500).json({ success: false, message: "User not found." });
   } else {
     res.status(200).json({ success: true, permission: user.permission });
+  }
+};
+
+exports.PlacedDetails = async (req, res) => {
+  //request body shall contain 1)Array of College IDS
+  //2)company Name
+
+  try {
+    let size = req.body.student_array.length;
+    for (let i = 0; i < size; i++) {
+      // user.placed_in.push(req.body.company_name);
+      // User.updateOne(
+      //   { college_id: req.body.student_array[i] },
+      //   user.placed_in.push(req.body.company_name)
+      // );
+      const user = await User.findOne({
+        college_id: req.body.student_array[i],
+      }).select("placed_in");
+
+      user.placed_in.push(req.body.company_name);
+      // const data = await user.save();
+      const data = await user.save();
+      console.log(user.placed_in);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Placed In successfully Updated",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
   }
 };

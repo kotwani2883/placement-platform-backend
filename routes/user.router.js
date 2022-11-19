@@ -24,4 +24,5 @@ router.get(
   authMiddleware.ensureLoggedIn,
   userController.permission
 );
+router.post("/PlacedDetails", userController.PlacedDetails);
 module.exports = router;

@@ -11,9 +11,10 @@ exports.getAll = async (req, res) => {
     const companies = await Company.find({
       companies_allowed: { $in: user.placed_in },
     })
+
       .select("company_name job_profile package ")
       .lean();
-
+    console.log(companies);
     res.status(200).json({ success: true, companies: companies });
   } catch (err) {
     console.error(err);
@@ -27,9 +28,11 @@ exports.add = (req, res) => {
   const _b = req.body;
   Company.create(_b)
     .then(async (data) => {
-      res
-        .status(200)
-        .json({ success: true, message: "Successfully new company added." });
+      res.status(200).json({
+        success: true,
+        message: "Successfully new company added.",
+        data: data,
+      });
       console.log(_b);
     })
     .catch((err) => {
@@ -41,15 +44,34 @@ exports.add = (req, res) => {
       });
     });
 };
+//Update only those which has placed in length 0
+//Or those which are allowed
 exports.validate = (req, res) => {
+  console.log(req.body);
   User.updateMany(
-    { aggregate_cgpa: { $gt: req.body.min_cgpa } },
+    {
+      $or: [
+        {
+          $and: [
+            ({ aggregate_cgpa: { $gt: req.body.min_cgpa } },
+            { placed_in: { $in: req.body.companies_allowed } }),
+          ],
+        },
+        {
+          $and: [
+            ({ aggregate_cgpa: { $gt: req.body.min_cgpa } },
+            { placed_in: { $eq: [] } }),
+          ],
+        },
+      ],
+    },
     { $push: { companies_allowed: req.body.company_name } }
   )
     .then(async (data) => {
       res.status(200).json({
         success: true,
-        message: "Successfully new company added to users",
+        message: "Successfully Validated and upgraded",
+        data: data,
       });
     })
 
