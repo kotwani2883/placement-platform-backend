@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
     })
       .select("company_name job_profile package ")
       .lean();
-    console.log(companies);
+
     res.status(200).json({ success: true, companies: companies });
   } catch (err) {
     console.error(err);
