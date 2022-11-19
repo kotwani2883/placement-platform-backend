@@ -19,7 +19,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://satyampgt4.github.io/placement-plateform-frontend/",
     credentials: true,
   })
 );
