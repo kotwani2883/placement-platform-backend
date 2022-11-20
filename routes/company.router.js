@@ -2,6 +2,7 @@ const router = require("express").Router();
 const companyController = require("../controller/company.controller");
 const jwtMiddleware = require("../middlewares/jwt.middleware");
 const authMiddleware = require("../middlewares/auth.middleware");
+const { route } = require("./user.router");
 
 router.get(
   "/getAll",
@@ -24,4 +25,5 @@ router.get(
 
 router.get("/getAllCompanies", companyController.getAllCompanies);
 router.post("/validate", companyController.validate);
+router.get("/getCountOfAllCompanies", companyController.getCountOfAllCompanies);
 module.exports = router;

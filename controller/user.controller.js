@@ -101,10 +101,12 @@ exports.me = async (req, res) => {
 };
 
 exports.profile = async (req, res) => {
+  console.log(req.query.college_id);
   let profile = await User.findOne({ college_id: req.query.college_id })
     .select("-temporarytoken -password ")
     .lean()
     .then((profile) => {
+      console.log(profile);
       console.log(profile);
       res.status(200).json({ success: true, profile: profile });
     })
@@ -178,6 +180,32 @@ exports.PlacedDetails = async (req, res) => {
       success: true,
       message: "Placed In successfully Updated",
     });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
+  }
+};
+
+exports.totalStudents = async (req, res) => {
+  //Total Company Visited
+  //TOtal  Count of Students placed
+  //Total Count of Students
+  try {
+    const data = await User.count();
+
+    res.status(200).json({ success: true, data: data });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
+  }
+};
+
+exports.PlacedStudents = async (req, res) => {
+  try {
+    const data = await User.find({ placed_in: { $ne: [] } }).count();
+    res.status(200).json({ success: true, data: data });
+    console.log(data);
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, message: "Something went wrong!" });

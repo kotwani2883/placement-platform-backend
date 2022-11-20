@@ -24,5 +24,7 @@ router.get(
   authMiddleware.ensureLoggedIn,
   userController.permission
 );
+router.get("/totalStudents", userController.totalStudents);
+router.get("/PlacedStudents", userController.PlacedStudents);
 router.post("/PlacedDetails", userController.PlacedDetails);
 module.exports = router;

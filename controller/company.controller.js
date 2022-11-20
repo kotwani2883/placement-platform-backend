@@ -117,3 +117,15 @@ exports.getAllCompanies = async (req, res) => {
         .json({ success: false, message: "Something went wrong!" });
     });
 };
+
+exports.getCountOfAllCompanies = async (req, res) => {
+  try {
+    const data = await Company.count();
+
+    res.status(200).json({ success: true, data: data });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
+  }
+};
