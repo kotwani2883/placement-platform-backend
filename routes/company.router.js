@@ -26,4 +26,5 @@ router.get(
 router.get("/getAllCompanies", companyController.getAllCompanies);
 router.post("/validate", companyController.validate);
 router.get("/getCountOfAllCompanies", companyController.getCountOfAllCompanies);
+router.get("/sendEmails", companyController.sendEmails);
 module.exports = router;

@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const Company = require("../models/company.model");
 const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
 
 exports.getAll = async (req, res) => {
   try {
@@ -83,6 +84,47 @@ exports.validate = (req, res) => {
           "Something went wrong! Did you miss Company Name, Passout Batch, Job Profile or Deadline date?",
       });
     });
+};
+
+exports.sendEmails = async (req, res) => {
+  const user = await User.find({
+    companies_allowed: { $in: req.query.company_name },
+  }).select("personal_email");
+  // console.log(user);
+  for (let i = 0; i < user.length; i++) {
+    console.log(user[i].personal_email);
+    let mailTransporter = await nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "placementcell.ietdavv@gmail.com",
+        pass: "hyzagqzrihfhdtxl",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      port: 465,
+      host: "smtp.gmail.com",
+    });
+
+    let mailDetails = {
+      from: "placementcell.ietdavv@gmail.com",
+      to: user[i].personal_email,
+      subject: `${req.query.company_name} is visting IET DAVV`,
+      text: `${req.query.company_name} is visiting our Campus.Kindly login to the portal and Apply for the same if you are intrested.`,
+    };
+
+    mailTransporter.sendMail(mailDetails, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email sent successfully");
+      }
+    });
+  }
+  res.status(200).json({
+    success: true,
+    message: "Mail sent successfully",
+  });
 };
 
 exports.getOne = async (req, res) => {
